@@ -368,7 +368,24 @@ var hasher = (function(window){
                     if (! hasher.raw) {
                         path = _encodePath(path);
                     }
-                    window.location.replace('#' + path);
+                    var currentLocationWithoutHash = (
+                        location.protocol +
+                        '//' +
+                        location.hostname +
+                        (
+                            location.port
+                                ? ":" + location.port
+                                : ""
+                        ) +
+                        location.pathname +
+                        (
+                            location.search
+                                ? location.search
+                                : ""
+                        )
+                    );
+
+                    window.location.replace(currentLocationWithoutHash + '#' + path);
                 }
             }
         },

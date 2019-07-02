@@ -1,7 +1,7 @@
 /*!!
  * Hasher <http://github.com/millermedeiros/hasher>
  * @author Miller Medeiros
- * @version 1.2.0 (2013/11/11 03:18 PM)
+ * @version 1.2.0 (2019/07/02 06:17 PM)
  * Released under the MIT License
  */
 
@@ -378,7 +378,24 @@ var hasher = (function(window){
                     if (! hasher.raw) {
                         path = _encodePath(path);
                     }
-                    window.location.replace('#' + path);
+                    var currentLocationWithoutHash = (
+                        location.protocol +
+                        '//' +
+                        location.hostname +
+                        (
+                            location.port
+                                ? ":" + location.port
+                                : ""
+                        ) +
+                        location.pathname +
+                        (
+                            location.search
+                                ? location.search
+                                : ""
+                        )
+                    );
+
+			        window.location.replace(currentLocationWithoutHash + '#' + path);
                 }
             }
         },
